@@ -1,21 +1,16 @@
 {
   "canisters": {
-    "inter_canister": {
-      "main": "src/inter_canister/main.mo",
+    "swap": {
+      "main": "src/swap/main.mo",
       "type": "motoko"
     },
-    "inter_canister_assets": {
-      "dependencies": [
-        "inter_canister"
-      ],
-      "frontend": {
-        "entrypoint": "src/inter_canister_assets/public/index.js"
-      },
-      "source": [
-        "src/inter_canister_assets/assets",
-        "dist/inter_canister_assets/"
-      ],
-      "type": "assets"
+    "token1": {
+      "main": "src/token/main.mo",
+      "type": "motoko"
+    },  
+    "token2": {
+      "main": "src/token/main.mo",
+      "type": "motoko"
     }
   },
   "defaults": {
