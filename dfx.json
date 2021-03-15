@@ -1,29 +1,26 @@
 {
-  "canisters": {
-    "swap": {
-      "main": "src/swap/main.mo",
-      "type": "motoko"
+    "canisters":{
+        "token1":{
+            "main":"src/token/main.mo"
+        },
+        "token2":{
+            "main":"src/token/main.mo"
+        },
+        "swap":{
+            "main":"src/swap/main.mo"
+        }
     },
-    "token1": {
-      "main": "src/token/main.mo",
-      "type": "motoko"
-    },  
-    "token2": {
-      "main": "src/token/main.mo",
-      "type": "motoko"
-    }
-  },
-  "defaults": {
-    "build": {
-      "packtool": ""
-    }
-  },
-  "dfx": "0.6.25",
-  "networks": {
-    "local": {
-      "bind": "127.0.0.1:8000",
-      "type": "ephemeral"
-    }
-  },
-  "version": 1
+    "defaults":{
+        "build":{
+            "packtool":""
+        }
+    },
+    "dfx":"0.6.25",
+    "networks":{
+        "local":{
+            "bind":"127.0.0.1:8000",
+            "type":"ephemeral"
+        }
+    },
+    "version":1
 }
