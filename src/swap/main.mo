@@ -3,7 +3,7 @@ import Token2 "canister:token2";
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
 
-actor Swap {
+actor class Test() = this {
     // owner 愿意使用 from_amount 个 from_token 来兑换成 to_amount 个 to_token.
     type Order = {
         owner: Principal;
@@ -47,11 +47,22 @@ actor Swap {
                 var _toer = msg.caller;
                 var _to_amount = order.to_amount;
                 // assert(Token1.identifier == order.from_token); 等等，假设 Token1 是 from token，Token2 是 to token。
+                
+                var _canister_id = Principal.fromActor(this);
+
+                var _token1_allowd = await Token1.allowance(_fromer, _canister_id);
+                var _token1_from_balance = await Token1.balanceOf(_fromer);
+                assert(_token1_allowd >= _from_amount and _token1_from_balance >= _from_amount);
+
+                var _token2_allowd = await Token2.allowance(_toer, _canister_id);
+                var _token2_to_balance = await Token2.balanceOf(_toer);
+                assert(_token2_allowd >= _to_amount and _token2_to_balance >= _to_amount);
+
                 var res1 = await Token1.transferFrom(_fromer, _toer , _from_amount);
                 assert(res1);
                 var res2 = await Token2.transferFrom(_toer, _fromer, _to_amount);
                 assert(res2);
-		orders.delete(who);
+		        orders.delete(who);
                 return true;
             };
             case (_) {
